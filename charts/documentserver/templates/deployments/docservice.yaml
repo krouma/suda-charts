@@ -65,19 +65,19 @@ spec:
           - name: DB_PWD
             valueFrom:
               secretKeyRef:
-                name: postgresql
+                name: {{ .Values.connections.dbPasswordSecret }}
                 key: postgresql-password
           {{- end }}
           {{- if .Values.connections.amqpPasswordSecret }}
           - name: AMQP_PWD
             valueFrom:
               secretKeyRef:
-                name: rabbitmq
+                name: {{ .Values.connections.amqpPasswordSecret }}
                 key: rabbitmq-password
           {{- end }}
           envFrom:
           - secretRef:
-              name: jwt
+              name: documentserver-jwt
           - configMapRef:
               name: documentserver
           volumeMounts:
