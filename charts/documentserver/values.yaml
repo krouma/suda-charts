@@ -143,6 +143,7 @@ service:
 ingress:
   # -- Installation of ingress service
   enabled: false
+  className: "nginx"
   ssl:
     # -- Installation SSL for ingress service
     enabled: false

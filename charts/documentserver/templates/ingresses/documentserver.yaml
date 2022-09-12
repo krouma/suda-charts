@@ -4,11 +4,13 @@ kind: Ingress
 metadata:
   name: documentserver
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
 spec:
+  {{ if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{ end }}
   {{ if .Values.ingress.ssl.enabled }}
-  tls: 
+  tls:
   - hosts:
     - {{ .Values.ingress.ssl.host }}
     secretName: {{ .Values.ingress.ssl.secret }}
@@ -27,5 +29,5 @@ spec:
           service:
             name: documentserver
             port:
-              number: 8888
+              number: {{ .Values.service.port }}
 {{ end }}
