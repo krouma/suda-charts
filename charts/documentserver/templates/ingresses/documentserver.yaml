@@ -4,6 +4,9 @@ kind: Ingress
 metadata:
   name: documentserver
   annotations:
+    {{ if .Values.ingress.clusterIssuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+    {{ end }}
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
 spec:
   {{ if .Values.ingress.className }}

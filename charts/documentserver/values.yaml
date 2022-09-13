@@ -144,6 +144,7 @@ ingress:
   # -- Installation of ingress service
   enabled: false
   className: "nginx"
+  clusterIssuer: ""
   ssl:
     # -- Installation SSL for ingress service
     enabled: false
